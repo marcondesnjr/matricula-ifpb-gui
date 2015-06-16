@@ -1,0 +1,9 @@
+.button {
+    -fx-font-weight: bold;
+}
+
+.error{
+    -fx-border-color: red;
+    -fx-border-radius: 3px;
+    -fx-border-style: dotted;
+}

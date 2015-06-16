@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.marcondesnjr.matriculaifpbgui.TelaPrincipalController">
+  <tabs>
+    <Tab text="Matrícula">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane layoutY="6.0" prefHeight="365.0" prefWidth="600.0">
+                     <center>
+                        <FlowPane maxWidth="300.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="300.0" text="Nome" />
+                              <TextField fx:id="tfNome" prefHeight="25.0" prefWidth="300.0" />
+                              <Label prefHeight="17.0" prefWidth="300.0" text="CPF" />
+                              <TextField fx:id="tfCpf" prefHeight="25.0" prefWidth="300.0" />
+                              <Label prefHeight="17.0" prefWidth="300.0" text="RG" />
+                              <TextField fx:id="tfRg" prefHeight="25.0" prefWidth="300.0" />
+                              <Label prefHeight="17.0" prefWidth="300.0" text="Nacionalidade" />
+                              <TextField fx:id="tfNacionalidade" prefHeight="25.0" prefWidth="300.0" />
+                              <Label prefHeight="17.0" prefWidth="300.0" text="Doc Militar" />
+                              <TextField fx:id="tfDocMilitar" prefHeight="25.0" prefWidth="300.0" />
+                              <Label prefHeight="17.0" prefWidth="300.0" text="Sexo" />
+                              <RadioButton fx:id="rbMasculido" mnemonicParsing="false" selected="true" text="Masculino">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="sexo" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="rbFeminino" mnemonicParsing="false" text="Feminino" toggleGroup="$sexo" />
+                              <Label prefHeight="17.0" prefWidth="300.0" text="Data de Nascimento" />
+                              <DatePicker fx:id="dpDataNasc" prefHeight="25.0" prefWidth="300.0" />
+                              <Button mnemonicParsing="false" onAction="#cancelarAH" text="Cancelar" />
+                              <Button mnemonicParsing="false" onAction="#concluirAH" text="Concluir" />
+                           </children>
+                        </FlowPane>
+                     </center>
+                     <right>
+                        <ProgressIndicator fx:id="progressId" progress="0.0" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Lista">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>
