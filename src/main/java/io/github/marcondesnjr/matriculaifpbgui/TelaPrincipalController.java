@@ -20,13 +20,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javax.swing.JOptionPane;
 /**
  * FXML Controller class
  *
@@ -92,33 +92,29 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     private void concluirAH(ActionEvent event) {
         progressId.setProgress(-1);
-        String nome = tfNome.getText();
-        String cpf = tfCpf.getText();
-        String Naci = tfNacionalidade.getText();
-        String rg = tfRg.getText();
-        char sx = rbFeminino.isSelected()?'F':'M';
-        LocalDate dtNasc = dpDataNasc.getValue();
-        AlunoBuilder alB = new AlunoBuilder(nome, cpf, rg, dtNasc , Naci, sx);
-        try {
-            if(!tfDocMilitar.getText().equals(""))
-                alB.comDocMilitar(tfDocMilitar.getText());
-            CadastrarAluno.cadastrarNovo(alB.build());
-            progressId.setProgress(1);            
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Sucesso");
-            alert.setHeaderText("O aluno foi cadastrado com sucesso");
-            alert.showAndWait();
-        }catch (DocumentoException ex) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText("O Aluno não deve possuir um documento militar");
-            alert.showAndWait();
-        } catch (AlunoInvalidoException ex) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(ex.getMessage());
-            alert.showAndWait();
-        }
+        new Thread( () ->{
+            String nome = tfNome.getText();
+            String cpf = tfCpf.getText();
+            String Naci = tfNacionalidade.getText();
+            String rg = tfRg.getText();
+            char sx = rbFeminino.isSelected()?'F':'M';
+            LocalDate dtNasc = dpDataNasc.getValue();
+            AlunoBuilder alB = new AlunoBuilder(nome, cpf, rg, dtNasc , Naci, sx);
+            try {
+                if(!tfDocMilitar.getText().equals(""))
+                    alB.comDocMilitar(tfDocMilitar.getText());
+                CadastrarAluno.cadastrarNovo(alB.build());
+                progressId.setProgress(1);
+                JOptionPane.showMessageDialog(null, "O aluno foi cadastrado com sucesso");
+            }catch (DocumentoException ex) {
+                JOptionPane.showMessageDialog(null,"O Aluno não deve possuir um documento militar");
+                progressId.setProgress(0);
+            } catch (AlunoInvalidoException ex) {
+                JOptionPane.showMessageDialog(null,ex.getMessage());
+                progressId.setProgress(0);
+            }
+        },"Cadastrar").start();
+        
     }
     
     private class DocMilitarLoc implements ChangeListener<Boolean>{

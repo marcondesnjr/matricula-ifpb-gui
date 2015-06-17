@@ -4,7 +4,7 @@
 
     <groupId>io.github.marcondesnjr</groupId>
     <artifactId>matricula-ifpb-gui</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>matricula-ifpb-gui</name>
@@ -113,7 +113,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>cadastro-aluno</artifactId>
-            <version>${project.version}</version>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
 </project>
